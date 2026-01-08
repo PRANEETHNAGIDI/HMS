@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>List of Patient</h2>
+
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Problem / Disease</th>
+        <th>Contact No</th>
+        <th>Referred </th>
+        <th>Admission Date</th>
+        <th>Assigned Room</th>
+        <th>Bill</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patient">
+        <td>{{ patient.patientID }}</td>
+        <td>{{ patient.Name }}</td>
+        <td>{{ patient.Speciality }}</td>
+        <td>{{ patient.ContactNo }}</td>
+        <td>{{ patient.Referred }}</td>
+        <td>{{patient.DOF}}</td>
+        <td>{{patient.Room}}</td>
+        <td>{{patient.Bill}}</td>
+        <td>
+          <span class="badge" [ngClass]="patient.Status ? 'bg-success' : 'bg-danger'">
+            {{ patient.Status ? 'Normal' : 'Serious' }} 
+          </span>
+            <button type="button" class="btn btn-small mt-auto" (click)="navigateTo()">
+        View Details
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      <button type="button" class="btn btn-warning"  (click)="onDash()">
+      <i class="bi bi-arrow-left-circle-fill"></i> Back to Dashboard
+    </button>
+</div>

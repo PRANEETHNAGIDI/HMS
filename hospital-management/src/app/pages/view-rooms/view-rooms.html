@@ -1,0 +1,30 @@
+<div class="container py-5">
+  <h2 class="mb-4 text-center text-primary fw-bold">
+    <i class="bi bi-door-open-fill me-2"></i>Available Rooms
+  </h2>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let room of availableRooms">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">
+            Room #{{ room.id }}
+          </h5>
+          <p class="card-text mb-1"><strong>Type:</strong> {{ room.type }}</p>
+          <p class="card-text mb-1"><strong>Rate:</strong> ₹{{ room.rate }}</p>
+          <p class="card-text">
+            <strong>Status:</strong>
+            <span [class]="room.isAvailable ? 'text-success' : 'text-danger'">
+              {{ room.isAvailable ? 'Available' : 'Occupied' }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    
+    <button type="button" class="btn btn-warning"  (click)="onDash()">
+      <i class="bi bi-arrow-left-circle-fill"></i> Back to Dashboard
+    </button>
+  </div>
+</div>

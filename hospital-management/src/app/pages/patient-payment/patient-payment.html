@@ -1,0 +1,113 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+<div *ngIf="formError" class="alert alert-warning" role="alert">
+  Please fill out all fields correctly before submitting.
+</div>
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+            <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+              <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+            </span>
+          <h2 class="h4 mb-4 text-primary fw-bold">
+            <i class="bi bi-credit-card me-2"></i> Patient Payment
+          </h2>
+
+          <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+           <div class="mb-3">
+  <label for="opdPatientId" class="form-label">
+    OPD Patient ID <span class="text-danger">*</span>
+  </label>
+  <input
+    type="number"
+    id="opdPatientId"
+    class="form-control"
+    formControlName="opdPatientId"
+    placeholder="Enter OPD patient ID"
+  />
+  <div *ngIf="paymentForm.get('opdPatientId')?.touched && paymentForm.get('opdPatientId')?.invalid" class="text-danger mt-1">
+    Patient ID is required.
+  </div>
+</div>
+
+            <div class="mb-3">
+  <label for="opdBillId" class="form-label">
+    OPD Bill ID <span class="text-danger">*</span>
+  </label>
+  <input
+    type="number"
+    id="opdBillId"
+    class="form-control"
+    formControlName="opdBillId"
+    placeholder="Enter OPD bill ID"
+  />
+  <div *ngIf="paymentForm.get('opdBillId')?.touched && paymentForm.get('opdBillId')?.invalid" class="text-danger mt-1">
+    Bill ID is required.
+  </div>
+</div>
+
+            <<div class="mb-3">
+  <label for="amountPaid" class="form-label">
+    Amount Paid (₹) <span class="text-danger">*</span>
+  </label>
+  <input
+    type="number"
+    id="amountPaid"
+    class="form-control"
+    formControlName="amountPaid"
+    placeholder="Enter amount paid"
+  />
+  <div *ngIf="paymentForm.get('amountPaid')?.touched && paymentForm.get('amountPaid')?.invalid" class="text-danger mt-1">
+    <div *ngIf="paymentForm.get('amountPaid')?.errors?.['required']">Amount is required.</div>
+    <div *ngIf="paymentForm.get('amountPaid')?.errors?.['min']">Amount must be 0 or more.</div>
+  </div>
+</div>
+             <div class="mb-3">
+            <label for="paymentType" class="form-label">Payment Type</label>
+<select id="paymentType" class="form-select" formControlName="paymentType">
+                  <option selected disabled>Select Payment type</option>
+                <option>UPI</option>
+                <option>Debit Card</option>
+                <option>Credit Card</option>
+                <option>Bank Transfer</option>
+                <option>Cash</option>
+                            </select>
+                            <div *ngIf="paymentForm.get('paymentType')?.touched && paymentForm.get('paymentType')?.invalid" class="text-danger mt-1">
+  Payment type is required.
+</div>
+
+            </div>
+
+           <div class="mb-3">
+  <label for="paymentDate" class="form-label">
+    Payment Date <span class="text-danger">*</span>
+  </label>
+  <input
+    type="date"
+    id="paymentDate"
+    class="form-control"
+    formControlName="paymentDate"
+  />
+  <div *ngIf="paymentForm.get('paymentDate')?.touched && paymentForm.get('paymentDate')?.invalid" class="text-danger mt-1">
+    Payment date is required.
+  </div>
+</div>
+
+            <div class="d-flex gap-2 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-check-circle me-1"></i> Save Payment
+              </button>
+              <button type="reset" class="btn btn-warning btn-lg">
+                Clear
+              </button>
+              <button type="reset" class="btn btn-danger btn-lg" (click)="onCancel()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

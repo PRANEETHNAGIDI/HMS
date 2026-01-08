@@ -1,0 +1,87 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div *ngIf="formError" class="alert alert-warning" role="alert">
+        Please fill out all fields correctly before submitting.
+      </div>
+
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4 position-relative">
+
+          <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+            <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+          </span>
+
+          <h2 class="h4 mb-4 text-dark fw-bold">
+            <i class="bi bi-file-earmark-text me-2"></i> View Patient Bill Summary 
+          </h2>
+          <div class="mt-5">
+            <!-- Patient Header -->
+            <div class="text-center mb-4">
+              <!-- <h3 class="fw-bold text-primary">{{ reportData.name }}</h3> -->
+             <h3 class=" text-center mb-3 text-black">Hello, {{ userName }}</h3>
+
+              <!-- <h5 class="text-muted">Patient ID: {{ reportData.id }}</h5> -->
+            </div>
+            <!-- Billing Summary -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Billing Summary</h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-hospital me-2"></i>Room Charges</span>
+                    <strong>₹5,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-capsule me-2"></i>Medicine Charges</span>
+                    <strong>₹3,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-clipboard2-pulse me-2"></i>Lab Tests</span>
+                    <strong>₹2,500</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-person-badge me-2"></i>Doctor Consultation</span>
+                    <strong>₹2,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between bg-light">
+                    <span class="fw-bold">Total</span>
+                    <strong class="text-success">₹12,500</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Summary Info -->
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle me-2"></i><br />
+              <!-- <strong>Name Patient:  {{ reportData.name }} </strong> <br /> -->
+
+              <strong>Room Assignment:</strong> Room 203, General Ward<br />
+              <strong>Admission Date:</strong> 15-Oct-2025<br />
+              <strong>Treatment History:</strong> Fever, Antibiotics, Blood Test<br />
+            </div>
+
+
+
+            <!-- Print Button -->
+            <div class="text-center mt-4">
+              <button class="btn btn-secondary btn-lg" (click)="onPrint()">
+                <i class="bi bi-printer me-1"></i> Print Page
+              </button>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-success btn-lg" (click)="downloadReport()">
+                <i class="bi bi-download me-1"></i> Download Report
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

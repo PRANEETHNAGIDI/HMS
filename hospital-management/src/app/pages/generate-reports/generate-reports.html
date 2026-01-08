@@ -1,0 +1,88 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4 position-relative">
+          <h2 class="h4 mb-4 text-dark fw-bold">
+            <i class="bi bi-file-earmark-text me-2"></i> Generate Patient Report
+          </h2>
+
+          <form [formGroup]="reportForm">
+            <div class="mb-3">
+              <label for="patientName" class="form-label">Patient Name <span class="text-danger">*</span></label>
+              <input type="text" id="patientName" class="form-control" formControlName="patientName" placeholder="Enter patient name" />
+              <div *ngIf="reportForm.get('patientName')?.touched && reportForm.get('patientName')?.invalid" class="text-danger mt-1">
+                Patient name is required.
+              </div>
+
+              <label for="patientId" class="form-label mt-3">Patient ID <span class="text-danger">*</span></label>
+              <input type="number" id="patientId" class="form-control" formControlName="patientId" placeholder="Enter patient ID" />
+              <div *ngIf="reportForm.get('patientId')?.touched && reportForm.get('patientId')?.invalid" class="text-danger mt-1">
+                Patient ID is required.
+              </div>
+            </div>
+
+            <div formArrayName="tests">
+              <div *ngFor="let test of tests.controls; let i = index" [formGroupName]="i" class="border p-3 mb-3 rounded">
+                <label class="form-label">Test Name</label>
+                <input type="text" class="form-control" formControlName="testName" placeholder="Enter test name" />
+
+                <label class="form-label mt-2">Result</label>
+                <input type="text" class="form-control" formControlName="result" placeholder="Enter result" />
+
+                <label class="form-label mt-2">Reference (optional)</label>
+                <input type="text" class="form-control" formControlName="reference" placeholder="Enter reference range" />
+
+                <button type="button" class="btn btn-danger mt-2" (click)="removeTest(i)" *ngIf="tests.length > 1">
+                  <i class="bi bi-trash"></i> Remove Test
+                </button>
+              </div>
+
+              <button type="button" class="btn btn-primary" (click)="addTest()">
+                <i class="bi bi-plus-circle"></i> Add Another Test
+              </button>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+              <button type="submit" class="btn btn-dark btn-lg" (click)="onSubmit()">
+                <i class="bi bi-search me-1"></i> View Report
+              </button>
+              <button type="button" class="btn btn-warning btn-lg" (click)="clearForm()">Clear</button>
+              <button type="button" class="btn btn-danger btn-lg" (click)="onCancel()">Cancel</button>
+            </div>
+          </form>
+
+          <div *ngIf="formError" class="alert alert-warning mt-4" role="alert">
+            Please fill out all fields correctly before submitting.
+          </div>
+
+          <div *ngIf="reportGenerated" class="mt-5">
+            <h4 class="text-success mb-3">Generated Report</h4>
+            <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Test Name</th>
+                  <th>Result</th>
+                  <th>Reference</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let test of reportData.tests; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ test.testName }}</td>
+                  <td>{{ test.result }}</td>
+                  <td>{{ test.reference || 'N/A' }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button class="btn btn-success" (click)="downloadReport()">
+              <i class="bi bi-download me-1"></i> Download Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

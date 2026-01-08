@@ -1,0 +1,23 @@
+<app-nav></app-nav>
+
+<div class="dash-bgimg">
+    <div class="container py-5">
+      <h4 class="text-white text-center mb-3">Hello, {{ userName }}</h4>
+    <h2 class="text-center mb-4 text-white">Hospital Management Admin Dashboard</h2>
+    <div class="row g-4">
+      <div class="col-md-3" *ngFor="let module of modules">
+        <div class="card h-100 shadow-sm text-center">
+          <div class="card-body d-flex flex-column justify-content-center">
+
+            <i class="{{ module.icon }} text-danger fs-1 mb-3 "></i>
+            <h5 class="card-title">{{ module.name }}</h5>
+            <p class="card-text">{{ module.description }}</p>
+            <button class="btn btn-primary text-white mt-auto" (click)="navigateTo(module.route)">
+              {{ module.btn }}
+            </button>                                     gg
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>   

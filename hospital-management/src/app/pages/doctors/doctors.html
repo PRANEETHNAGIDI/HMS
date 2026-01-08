@@ -1,0 +1,106 @@
+<app-nav></app-nav>
+<div class="dash-bgimg">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div *ngIf="formError" class="alert alert-warning" role="alert">
+  Please fill out all fields correctly before submitting.
+</div>
+        <div class="card shadow-lg border-0 cont position-relative">
+          <div class="card-body p-4">
+            <!-- Cross icon in the top-right corner -->
+            <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+              <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+            </span>
+
+            <h2 class="h4 mb-4 text-primary fw-bold">
+              <i class="bi bi-person-plus me-2"></i> Add Doctor
+            </h2>
+
+            <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+              <!-- Doctor Name -->
+<div class="mb-3">
+  <label for="doctor-name" class="form-label">
+    Doctor's Name <span class="text-danger">*</span>
+  </label>
+  <input
+    type="text"
+    id="doctor-name"
+    class="form-control"
+    placeholder="Enter doctor's name"
+    formControlName="doctorName"
+  />
+  <div *ngIf="doctorForm.get('doctorName')?.touched && doctorForm.get('doctorName')?.invalid" class="text-danger mt-1">
+    Doctor's name is required.
+  </div>
+</div>
+
+<!-- Speciality -->
+<div class="mb-3">
+  <label for="doctor-speciality" class="form-label">
+    Speciality <span class="text-danger">*</span>
+  </label>
+  <input
+    type="text"
+    id="doctor-speciality"
+    class="form-control"
+    placeholder="Enter doctor's speciality"
+    formControlName="doctorSpeciality"
+  />
+  <div *ngIf="doctorForm.get('doctorSpeciality')?.touched && doctorForm.get('doctorSpeciality')?.invalid" class="text-danger mt-1">
+    Speciality is required.
+  </div>
+</div>
+
+<!-- Contact Number -->
+<div class="mb-3">
+  <label for="doctor-contact" class="form-label">
+    Contact Number <span class="text-danger">*</span>
+  </label>
+  <input
+    type="text"
+    id="doctor-contact"
+    class="form-control"
+    placeholder="Enter Doctor's Contact Number"
+    formControlName="doctorContactNo"
+  />
+  <div *ngIf="doctorForm.get('doctorContactNo')?.touched && doctorForm.get('doctorContactNo')?.invalid" class="text-danger mt-1">
+    <div *ngIf="doctorForm.get('doctorContactNo')?.errors?.['required']">Contact number is required.</div>
+    <div *ngIf="doctorForm.get('doctorContactNo')?.errors?.['pattern']">Contact number must be exactly 10 digits.</div>
+  </div>
+</div>
+
+<!-- Department -->
+<div class="mb-3">
+  <label for="department" class="form-label">
+    Department <span class="text-danger">*</span>
+  </label>
+  <select id="department" class="form-select" formControlName="department">
+    <option value="" disabled>Select department</option>
+    <option value="Permanent">Permanent</option>
+    <option value="Visiting">Visiting</option>
+  </select>
+  <div *ngIf="doctorForm.get('department')?.touched && doctorForm.get('department')?.invalid" class="text-danger mt-1">
+    Department is required.
+  </div>
+</div>
+
+
+              <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="bi bi-save me-1"></i> Save
+                </button>
+                <button type="button" class="btn btn-warning btn-lg" (click)="onViewDoc()">
+                  View Doctors
+                </button>
+                <button type="reset" class="btn btn-dark btn-lg">
+                  Clear
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

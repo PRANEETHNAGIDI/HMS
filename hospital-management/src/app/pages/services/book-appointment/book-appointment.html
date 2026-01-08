@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+          <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+            <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+          </span>
+          <h2 class="h4 mb-4 text-primary fw-bold">
+            <i class="bi bi-calendar-check me-2"></i> Book Appointment
+          </h2>
+
+          <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Patient Name</label>
+              <input type="text" class="form-control" formControlName="patientName" placeholder="Enter patient name" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Doctor</label>
+              <select class="form-select" formControlName="doctor">
+                <option value="">Select Doctor</option>
+                <option value="Dr. Rao">Dr. Rao</option>
+                <option value="Dr. sarayu">Dr. sarayu</option>
+                <option value="Dr. pranee">Dr. pranee</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-control" formControlName="date" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Time</label>
+              <input type="time" class="form-control" formControlName="time" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Reason (Optional)</label>
+              <textarea class="form-control" formControlName="reason" rows="3" placeholder="Reason for appointment"></textarea>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg" [disabled]="appointmentForm.invalid">
+                <i class="bi bi-check-circle me-1"></i> Book Appointment
+              </button>
+              <button type="reset" class="btn btn-warning btn-lg">
+                Clear
+              </button>
+              <button type="button" class="btn btn-danger btn-lg" (click)="onCancel()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

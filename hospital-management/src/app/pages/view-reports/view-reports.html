@@ -1,0 +1,182 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div *ngIf="formError" class="alert alert-warning" role="alert">
+        Please fill out all fields correctly before submitting.
+      </div>
+
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4 position-relative">
+
+          <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+            <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+          </span>
+
+          <h2 class="h4 mb-4 text-dark fw-bold">
+            <i class="bi bi-file-earmark-text me-2"></i> View Patient Report
+          </h2>
+
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="patientName" class="form-label">
+      Patient Name <span class="text-danger">*</span>
+    </label>
+    <input
+      type="text"
+      id="patientName"
+      class="form-control"
+      formControlName="patientName"
+      placeholder="Enter patient name"
+    />
+    <div *ngIf="reportForm.get('patientName')?.touched && reportForm.get('patientName')?.invalid" class="text-danger mt-1">
+      Patient name is required.
+    </div>
+
+    <label for="patientId" class="form-label mt-3">
+      Patient ID <span class="text-danger">*</span>
+    </label>
+    <input
+      type="number"
+      id="patientId"
+      class="form-control"
+      formControlName="patientId"
+      placeholder="Enter patient ID"
+    />
+    <div *ngIf="reportForm.get('patientId')?.touched && reportForm.get('patientId')?.invalid" class="text-danger mt-1">
+      Patient ID is required.
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 mt-4">
+    <button type="submit" class="btn btn-dark btn-lg">
+      <i class="bi bi-search me-1"></i> View Report
+    </button>
+    <button type="button" class="btn btn-warning btn-lg" (click)="onClear()">Clear</button>
+    <button type="button" class="btn btn-danger btn-lg" (click)="onCancel()">Cancel</button>
+  </div>
+</form>
+
+          <div *ngIf="reportData" class="mt-5">
+            <!-- Patient Header -->
+            <div class="text-center mb-4">
+              <h3 class="fw-bold text-primary">{{ reportData.name }}</h3>
+              <h5 class="text-muted">Patient ID: {{ reportData.id }}</h5>
+            </div>
+            <!-- Billing Summary -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Billing Summary</h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-hospital me-2"></i>Room Charges</span>
+                    <strong>₹5,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-capsule me-2"></i>Medicine Charges</span>
+                    <strong>₹3,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-clipboard2-pulse me-2"></i>Lab Tests</span>
+                    <strong>₹2,500</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-person-badge me-2"></i>Doctor Consultation</span>
+                    <strong>₹2,000</strong>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between bg-light">
+                    <span class="fw-bold">Total</span>
+                    <strong class="text-success">₹12,500</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Summary Info -->
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle me-2"></i><br />
+              <strong>Name Patient:  {{ reportData.name }} </strong> <br />
+
+              <strong>Room Assignment:</strong> Room 203, General Ward<br />
+              <strong>Admission Date:</strong> 15-Oct-2025<br />
+              <strong>Treatment History:</strong> Fever, Antibiotics, Blood Test<br />
+            </div>
+
+            <!-- Test Results -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Patient Report Result</h5>
+              </div>
+              <div class="card-body">
+                <!-- Test Case 1 -->
+                <div class="testcase mb-4">
+                  <div class="row mb-2">
+                    <div class="col-md-6"><strong>Test Name:</strong> Maleria</div>
+                    <div class="col-md-6"><strong>Status:</strong> <span class="badge bg-danger">Positive</span></div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Parameter</th>
+                          <th>Value</th>
+                          <th>Reference Range</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>CT Value</td><td>32.5</td><td>> 30 (Negative)</td></tr>
+                        <tr><td>Antigen Level</td><td>0.2 ng/mL</td><td>1.0 ng/mL</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mt-2"><strong>Remarks:</strong> <p class="text-muted">No signs of active infection. Recommend routine monitoring.</p></div>
+                </div>
+
+                <!-- Test Case 2 -->
+                <div class="testcase">
+                  <div class="row mb-2">
+                    <div class="col-md-6"><strong>Test Name:</strong> Cancer</div>
+                    <div class="col-md-6"><strong>Status:</strong> <span class="badge bg-success">Negative</span></div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Parameter</th>
+                          <th>Value</th>
+                          <th>Reference Range</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>CT Value</td><td>32.5</td><td>> 30 (Negative)</td></tr>
+                        <tr><td>Antigen Level</td><td>0.2 ng/mL</td><td>1.0 ng/mL</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mt-2"><strong>Remarks:</strong> <p class="text-muted">No signs of active infection. Recommend routine monitoring.</p></div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Print Button -->
+            <div class="text-center mt-4">
+              <button class="btn btn-secondary btn-lg" (click)="onPrint()">
+                <i class="bi bi-printer me-1"></i> Print Page
+              </button>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-success btn-lg" (click)="downloadReport()">
+                <i class="bi bi-download me-1"></i> Download Report
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

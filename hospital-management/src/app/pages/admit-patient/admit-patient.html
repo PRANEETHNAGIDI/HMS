@@ -1,0 +1,89 @@
+<app-nav></app-nav>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div *ngIf="formError" class="alert alert-warning" role="alert">
+        Please fill out all fields correctly before submitting.
+       </div>
+          <div class="card shadow-lg border-0">
+              <div class="card-body p-4">
+                  <span class="position-absolute top-0 end-0 p-3 cursor-pointer" (click)="onCancel()">
+                      <i class="bi bi-x-circle-fill text-danger" style="font-size: 1.5rem;"></i>
+                  </span>
+            <h2 class="h4 mb-4 text-success fw-bold">
+            <i class="bi bi-person-plus-fill me-2"></i> Admit Patient
+        </h2>
+
+        <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+                        <!-- Patient Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Patient Name <span class="text-danger">*</span></label>
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter patient's name" />
+              <div *ngIf="patientForm.get('name')?.touched && patientForm.get('name')?.invalid" class="text-danger mt-1">
+                Patient name is required.
+              </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="mb-3">
+              <label for="contactNo" class="form-label">Contact Number <span class="text-danger">*</span></label>
+              <input type="text" id="contactNo" class="form-control" formControlName="contactNo" placeholder="Enter contact number" />
+              <div *ngIf="patientForm.get('contactNo')?.touched && patientForm.get('contactNo')?.invalid" class="text-danger mt-1">
+                <div *ngIf="patientForm.get('contactNo')?.errors?.['required']">Contact number is required.</div>
+                <div *ngIf="patientForm.get('contactNo')?.errors?.['pattern']">Contact number must be 10–15 digits.</div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+              <textarea id="address" class="form-control" formControlName="address" rows="2" placeholder="Enter address"></textarea>
+              <div *ngIf="patientForm.get('address')?.touched && patientForm.get('address')?.invalid" class="text-danger mt-1">
+                Address is required.
+              </div>
+            </div>
+
+            <!-- Disease -->
+            <div class="mb-3">
+              <label for="disease" class="form-label">Disease <span class="text-danger">*</span></label>
+              <input type="text" id="disease" class="form-control" formControlName="disease" placeholder="Enter disease" />
+              <div *ngIf="patientForm.get('disease')?.touched && patientForm.get('disease')?.invalid" class="text-danger mt-1">
+                Disease is required.
+              </div>
+            </div>
+
+            <!-- Referred By Doctor ID -->
+            <div class="mb-3">
+              <label for="doctorId" class="form-label">Referred By (Doctor ID) <span class="text-danger">*</span></label>
+              <input type="number" id="doctorId" class="form-control" formControlName="referredByDoctorID" placeholder="Enter referring doctor ID" />
+              <div *ngIf="patientForm.get('referredByDoctorID')?.touched && patientForm.get('referredByDoctorID')?.invalid" class="text-danger mt-1">
+                Doctor ID is required.
+              </div>
+            </div>
+
+            <!-- Admission Date -->
+            <div class="mb-3">
+              <label for="admissionDate" class="form-label">Admission Date <span class="text-danger">*</span></label>
+              <input type="date" id="admissionDate" class="form-control" formControlName="admissionDate" />
+              <div *ngIf="patientForm.get('admissionDate')?.touched && patientForm.get('admissionDate')?.invalid" class="text-danger mt-1">
+                Admission date is required.
+              </div>
+            </div>
+            <!-- Buttons -->
+            <div class="d-flex gap-2 mt-4">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="bi bi-check-circle me-1"></i> Admit
+              </button>
+              <button type="reset" class="btn btn-warning btn-lg">
+                Clear
+              </button>
+              <button type="reset" class="btn btn-danger btn-lg" (click)="onCancel()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
