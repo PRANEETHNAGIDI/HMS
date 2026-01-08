@@ -6,3 +6,6 @@ const bootstrap = (context: BootstrapContext) =>
     bootstrapApplication(App, config, context);
 
 export default bootstrap;
+
+
+//main framework for server side rendering
