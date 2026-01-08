@@ -1,6 +1,49 @@
-# HospitalManagement
+# Hospital Management System (HMS)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+This is a comprehensive Hospital Management System built with Angular 20. The application provides a complete solution for managing hospital operations, including user authentication, patient management, doctor management, room allocation, billing, reporting, and administrative dashboards.
+
+## Features
+
+- **User Authentication**: Secure login and signup functionality for different user roles (admin, patient, etc.)
+- **Dashboards**: Separate dashboards for administrators and patients with role-based access
+- **Patient Management**:
+  - Admit and discharge patients
+  - View patient details and history
+  - Patient billing and payment processing
+- **Doctor Management**: View and manage doctor information
+- **Room Management**: Allocate rooms, handle room shifting, and view room availability
+- **Billing & Payments**: Generate bills, process payments, and manage patient financial records
+- **Reporting**: Generate and view various hospital reports
+- **Services**: Additional hospital services management
+- **Navigation**: Intuitive navigation bar for easy access to all features
+
+## Technologies Used
+
+- **Angular 20**: Modern web framework for building scalable single-page applications
+- **Angular SSR**: Server-side rendering for improved performance and SEO
+- **Bootstrap 5**: Responsive UI framework for consistent styling
+- **ng-bootstrap**: Angular components powered by Bootstrap
+- **Bootstrap Icons**: Icon library for enhanced UI elements
+- **TypeScript**: Strongly typed programming language
+- **RxJS**: Reactive programming library for handling asynchronous operations
+
+## Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn package manager
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd hospital-management
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
 ## Development server
 
@@ -53,6 +96,14 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Server-Side Rendering
+
+To serve the application with server-side rendering, run:
+
+```bash
+npm run serve:ssr:hospital-management
+```
 
 ## Additional Resources
 
